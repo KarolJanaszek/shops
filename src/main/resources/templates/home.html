@@ -61,7 +61,13 @@
 
         <div class="starter-template">
             <h1>Dodaj sklep</h1>
-
+            <!--
+           action=/shops method=post mówi, że jak klikne w button
+           to przejdzie do urla /shops z metodą POST
+           th:object pobieram obiekt shop z kontrolera
+           *{name} to robi nazwa name="name" th:value="${shop.name}
+           id="price" name="price" value="shop.price"
+            -->
             <form action="/shops" method="post" th:object="${shop}">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nazwa</label>
