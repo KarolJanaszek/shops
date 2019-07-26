@@ -24,4 +24,8 @@ public class Comment {
     @OneToOne
     private Shop shop;
 
+    @Override
+    public String toString() {
+        return "Komentarz o nr: "+id+". "+description+" Wartość koszyka: "+price;
+    }
 }

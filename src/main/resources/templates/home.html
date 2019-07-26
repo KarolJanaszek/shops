@@ -93,7 +93,7 @@
                 <ul class="list-group" th:each="shop: ${shops}">
                     <li th:inline="text"
                         class="list-group-item d-flex justify-content-between align-items-center">
-                        [[${shop}]]
+                        <a th:href="'shops/'+${shop.id}"\>[[${shop}]]</a>
                         <span class="badge badge-primary badge-pill">5.8</span>
                     </li>
                 </ul>
