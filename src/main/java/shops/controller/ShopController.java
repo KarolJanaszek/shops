@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import shops.model.Comment;
 import shops.model.Shop;
 import shops.reposytory.ShopReposytory;
 
@@ -31,7 +32,11 @@ public class ShopController {
 
     @GetMapping("/shops/{id}")
     public String show(@PathVariable Integer id, ModelMap map){
+        Shop shop = shopRepository.findById(id).get();
         map.put("shop", shopRepository.findById(id).get());
+        Comment comment = new Comment();
+        comment.setShop(shop);
+        map.put("comment", comment);
         return "show";
     }
 }
