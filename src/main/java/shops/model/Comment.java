@@ -26,6 +26,6 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Komentarz o nr: "+id+". "+description+" Wartość koszyka: "+price;
+        return getDescription()+". Wartość koszyka: "+getPrice()+" PLN.";
     }
 }

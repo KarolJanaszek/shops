@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:comment="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -66,7 +66,19 @@
     ​
     <h1>Lista komentarzy</h1>
 
-    [[${comment}]]
+    <!--
+        th:each odpowiednik pętli w Thymeleaf
+        shop jest zmienna, która pochodzi z kontrollera
+        shop.comments wywołuje shop.getComments()
+        getComments generule Lombok, a implementacja jest
+        generowana przez Hibernate i andotacje OneToMany
+        w praktyce jest robiony SQL do bazy
+        SELECT * FROM comment WHERE shop_id=1;
+        c zmienna lokanlna html
+    -->
+
+    <ul th:each="c: ${shop.comments}">
+    <li th:text="${c}"/></ul>
     ​
     <h1>Dodaj komentarz</h1>
     ​
@@ -105,7 +117,7 @@
         <br>
         <br>
         <br><form action="/">
-        <button type="submit" class="btn btn-secondary btn-lg btn-block">Wróc</button></form>
+        <button type="submit" class="btn btn-secondary btn-lg btn-block" formnovalidate>Wróc</button></form>
     </form>
     ​
     ​
