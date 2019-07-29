@@ -3,10 +3,8 @@ package shops.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shops.model.Comment;
 import shops.model.Shop;
 import shops.reposytory.ShopReposytory;
@@ -38,5 +36,19 @@ public class ShopController {
         comment.setShop(shop);
         map.put("comment", comment);
         return "show";
+    }
+
+
+    @GetMapping("/search")
+    public String search(@RequestParam String name, ModelMap redirectAttributes ){
+        redirectAttributes.addAttribute("shops",shopRepository.findShopByName(name));
+
+        if(shopRepository.findShopByName(name).size()>0)
+        redirectAttributes.addAttribute("message", "Znalezione sklepy");
+        else
+            redirectAttributes.addAttribute("message", "Nie znaleziono sklepu");
+
+        redirectAttributes.put("shop", new Shop());
+        return "home";
     }
 }
